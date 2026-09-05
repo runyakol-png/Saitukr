@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="uk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Філії — AutoSRS</title><link rel="stylesheet" href="styles.css"></head>
+<body><div class="page"><div class="canvas" style="--base:1024px">
+<img src="assets/branches.jpg" alt="Філії — AutoSRS">
+<a class="hotspot" href="index.html" aria-label="Головна" style="left:22.0%;top:.6%;width:7%;height:3%"></a>
+<a class="hotspot" href="about.html" aria-label="Про нас" style="left:29.2%;top:.6%;width:7%;height:3%"></a>
+<a class="hotspot" href="#services" aria-label="Послуги" style="left:36.4%;top:.6%;width:7%;height:3%"></a>
+<a class="hotspot" href="#works" aria-label="Наші роботи" style="left:43.4%;top:.6%;width:10%;height:3%"></a>
+<a class="hotspot" href="branches.html" aria-label="Філії" style="left:53.6%;top:.6%;width:5.7%;height:3%"></a>
+<a class="hotspot" href="tel:+380635799065" aria-label="Контакти" style="left:59%;top:.4%;width:31%;height:3.4%"></a>
+
+<!-- Ukraine cards -->
+<button class="hotspot" onclick="openBranch('kyiv')" style="left:3.2%;top:34.0%;width:23%;height:14%" aria-label="Київ"></button>
+<button class="hotspot" onclick="openBranch('lviv')" style="left:27.4%;top:34.0%;width:22.5%;height:14%" aria-label="Львів"></button>
+<button class="hotspot" onclick="openBranch('kharkiv')" style="left:51.3%;top:34.0%;width:22.5%;height:14%" aria-label="Харків"></button>
+<button class="hotspot" onclick="openBranch('dnipro')" style="left:75.1%;top:34.0%;width:21.5%;height:14%" aria-label="Дніпро"></button>
+<button class="hotspot" onclick="openBranch('odesa')" style="left:3.2%;top:49.1%;width:29.7%;height:15%" aria-label="Одеса"></button>
+<button class="hotspot" onclick="openBranch('mykolaiv')" style="left:34.0%;top:49.1%;width:31.4%;height:15%" aria-label="Миколаїв"></button>
+<button class="hotspot" onclick="openBranch('izmail')" style="left:66.5%;top:49.1%;width:30.2%;height:15%" aria-label="Ізмаїл"></button>
+<!-- Georgia cards -->
+<button class="hotspot" onclick="openBranch('tbilisi')" style="left:3.2%;top:71.0%;width:29.5%;height:14%" aria-label="Тбілісі"></button>
+<button class="hotspot" onclick="openBranch('batumi')" style="left:33.8%;top:71.0%;width:29.0%;height:14%" aria-label="Батумі"></button>
+</div></div><div id="modalBackdrop" class="modal-backdrop" onclick="if(event.target===this)closeModal()"><div id="modalBody" class="modal"></div></div><script src="app.js"></script></body></html>

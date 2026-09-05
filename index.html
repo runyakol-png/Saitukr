@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="uk">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AutoSRS — відновлення систем безпеки</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+<div class="page"><div class="canvas" style="--base:1226px">
+<img src="assets/home.jpg" alt="AutoSRS — головна">
+<!-- top navigation -->
+<a class="hotspot" href="index.html" aria-label="Головна" style="left:26.3%;top:1.4%;width:6.6%;height:4.4%"></a>
+<a class="hotspot" href="about.html" aria-label="Про нас" style="left:33.0%;top:1.4%;width:6.8%;height:4.4%"></a>
+<a class="hotspot" href="#services" aria-label="Послуги" style="left:40.0%;top:1.4%;width:6.3%;height:4.4%"></a>
+<a class="hotspot" href="#works" aria-label="Наші роботи" style="left:46.2%;top:1.4%;width:8.8%;height:4.4%"></a>
+<a class="hotspot" href="branches.html" aria-label="Філії" style="left:55.0%;top:1.4%;width:5.2%;height:4.4%"></a>
+<a class="hotspot" href="tel:+380635799065" aria-label="Контакти" style="left:60.1%;top:1.4%;width:18.0%;height:4.4%"></a>
+<a class="hotspot" href="tel:+380635799065" aria-label="Зворотний дзвінок" style="left:82.0%;top:1.0%;width:14.4%;height:5.5%"></a>
+
+<!-- city pins, exact visual untouched -->
+<button class="hotspot" aria-label="Львів" onclick="openBranch('lviv')" style="left:22.0%;top:33.5%;width:10%;height:8%"></button>
+<button class="hotspot" aria-label="Київ" onclick="openBranch('kyiv')" style="left:45.0%;top:31.5%;width:10%;height:8%"></button>
+<button class="hotspot" aria-label="Харків" onclick="openBranch('kharkiv')" style="left:70.2%;top:36.8%;width:12%;height:8%"></button>
+<button class="hotspot" aria-label="Дніпро" onclick="openBranch('dnipro')" style="left:64.0%;top:46.0%;width:12%;height:8%"></button>
+<button class="hotspot" aria-label="Миколаїв" onclick="openBranch('mykolaiv')" style="left:51.0%;top:54.0%;width:14%;height:8%"></button>
+<button class="hotspot" aria-label="Одеса" onclick="openBranch('odesa')" style="left:46.0%;top:58.0%;width:11%;height:8%"></button>
+<button class="hotspot" aria-label="Ізмаїл" onclick="openBranch('izmail')" style="left:38.0%;top:63.0%;width:12%;height:8%"></button>
+<button class="hotspot" aria-label="Батумі" onclick="openBranch('batumi')" style="left:7.0%;top:62.0%;width:13%;height:8%"></button>
+<button class="hotspot" aria-label="Тбілісі" onclick="openBranch('tbilisi')" style="left:18.0%;top:62.0%;width:13%;height:8%"></button>
+
+<!-- full benefits panel can go to branches -->
+<a class="hotspot" href="branches.html" aria-label="Наші філії" style="left:4%;top:72.2%;width:92%;height:17.8%"></a>
+</div></div>
+<div id="modalBackdrop" class="modal-backdrop" onclick="if(event.target===this)closeModal()"><div id="modalBody" class="modal"></div></div>
+<script src="app.js"></script>
+</body></html>
