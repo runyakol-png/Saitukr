@@ -1,4 +1,5 @@
 const branches = {
+
   kyiv:{
     name:"Київ",
     phone:"+380982232242",
@@ -68,6 +69,7 @@ const branches = {
     label:"+995 555 95 97 46",
     note:"Заберемо та доставимо у вашому місті"
   }
+
 };
 
 
@@ -87,18 +89,15 @@ function openBranch(key){
 
     callButtons = b.phones
       .map(([p,l]) =>
-        `<a class="primary" href="tel:${p}">
-          Подзвонити ${l}
-        </a>`
+        `<a class="primary" href="tel:${p}">Подзвонити ${l}</a>`
       )
       .join("");
 
   }else{
 
     callButtons =
-      `<a class="primary" href="tel:${b.phone}">
-        Подзвонити ${b.label}
-      </a>`;
+      `<a class="primary" href="tel:${b.phone}">Подзвонити ${b.label}</a>`;
+
   }
 
 
@@ -123,33 +122,31 @@ function openBranch(key){
 
       ${
         b.map
-        ? `<a href="${b.map}" target="_blank" rel="noopener">
-             Прокласти маршрут
-           </a>`
-        : ""
+          ? `<a href="${b.map}" target="_blank" rel="noopener">Прокласти маршрут</a>`
+          : ""
       }
 
     </div>
+
   `;
 
 
-  const backdrop = document.getElementById("modalBackdrop");
+  document
+    .getElementById("modalBackdrop")
+    .classList.add("open");
 
-  if(backdrop){
-    backdrop.classList.add("open");
-  }
 }
 
 
 function closeBranch(){
 
-  const backdrop = document.getElementById("modalBackdrop");
+  const modal = document.getElementById("modalBackdrop");
 
-  if(backdrop){
-    backdrop.classList.remove("open");
+  if(modal){
+    modal.classList.remove("open");
   }
-}
 
+}
 
 
 /* =========================
@@ -158,188 +155,180 @@ function closeBranch(){
 
 function openManager(){
 
-  const popup = document.getElementById("managerBackdrop");
+  const popup = document.getElementById("managerPopup");
 
-  if(!popup) return;
+  if(popup){
+    popup.classList.add("open");
+  }
 
-  popup.classList.add("open");
 }
 
 
 function closeManager(){
 
-  const popup = document.getElementById("managerBackdrop");
+  const popup = document.getElementById("managerPopup");
 
   if(popup){
     popup.classList.remove("open");
   }
 
-  /*
-    Запоминаем, что человек уже закрыл окно.
-    Повторно каждые 5 секунд оно появляться не будет.
-  */
-
-  try{
-    sessionStorage.setItem("autosrs_manager_closed","1");
-  }catch(e){}
 }
 
 
+function toggleManager(){
+
+  const popup = document.getElementById("managerPopup");
+
+  if(!popup) return;
+
+  popup.classList.toggle("open");
+
+}
+
 
 /* =========================
-   ПОЯВЛЕНИЕ ЧЕРЕЗ 5 СЕКУНД
+   СТАРТ СТРАНИЦЫ
 ========================= */
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  const managerPopup = document.getElementById("managerBackdrop");
-
   /*
-    Если на этой странице окна менеджера нет,
-    ничего не делаем.
+    Через 5 секунд автоматически
+    показываем окно менеджера.
   */
 
-  if(managerPopup){
+  setTimeout(() => {
 
-    let wasClosed = false;
+    openManager();
 
-    try{
-      wasClosed =
-        sessionStorage.getItem("autosrs_manager_closed") === "1";
-    }catch(e){}
+  }, 5000);
 
-
-    if(!wasClosed){
-
-      setTimeout(() => {
-
-        openManager();
-
-      }, 5000);
-
-    }
-  }
-
-
-  /*
-    Форма менеджера
-  */
 
   const form = document.getElementById("managerForm");
 
-  if(form){
-
-    form.addEventListener("submit", async (event) => {
-
-      event.preventDefault();
+  if(!form) return;
 
 
-      const name =
-        document.getElementById("managerName").value.trim();
+  form.addEventListener("submit", async (event) => {
 
-      const phone =
-        document.getElementById("managerPhone").value.trim();
-
-      const region =
-        document.getElementById("managerRegion").value;
+    event.preventDefault();
 
 
-      if(!name || !phone || !region){
+    const name =
+      document
+        .getElementById("managerName")
+        .value
+        .trim();
 
-        alert("Будь ласка, заповніть усі поля.");
 
-        return;
+    const phone =
+      document
+        .getElementById("managerPhone")
+        .value
+        .trim();
+
+
+    const region =
+      document
+        .getElementById("managerRegion")
+        .value;
+
+
+    if(!name || !phone || !region){
+
+      alert("Будь ласка, заповніть усі поля.");
+
+      return;
+    }
+
+
+    const button =
+      document.getElementById("managerSubmit");
+
+
+    const originalText =
+      button.textContent;
+
+
+    button.disabled = true;
+
+    button.textContent = "ВІДПРАВЛЯЄМО...";
+
+
+    try{
+
+      const response = await fetch(
+        "https://autosrs-leads-api.vercel.app/api/lead",
+        {
+
+          method:"POST",
+
+          headers:{
+            "Content-Type":"application/json"
+          },
+
+          body:JSON.stringify({
+            name,
+            phone,
+            region
+          })
+
+        }
+      );
+
+
+      const result =
+        await response.json();
+
+
+      if(!response.ok || !result.success){
+
+        throw new Error("Помилка відправки");
+
       }
 
 
-      const button =
-        document.getElementById("managerSubmit");
+      /*
+        Показываем успешную отправку
+      */
+
+      const formContent =
+        document.getElementById("managerFormContent");
 
 
-      const oldButtonText = button.textContent;
+      const success =
+        document.getElementById("managerSuccess");
 
 
-      button.disabled = true;
-
-      button.textContent = "ВІДПРАВЛЯЄМО...";
-
-
-      try{
-
-        const response = await fetch(
-          "https://autosrs-leads-api.vercel.app/api/lead",
-          {
-            method:"POST",
-
-            headers:{
-              "Content-Type":"application/json"
-            },
-
-            body:JSON.stringify({
-              name:name,
-              phone:phone,
-              region:region
-            })
-          }
-        );
-
-
-        const result = await response.json();
-
-
-        if(!response.ok || !result.success){
-
-          throw new Error("Помилка відправки");
-        }
-
-
-        /*
-          Успешная отправка
-        */
-
-        const formContent =
-          document.getElementById("managerFormContent");
-
-        const success =
-          document.getElementById("managerSuccess");
-
-
-        if(formContent){
-          formContent.style.display = "none";
-        }
-
-        if(success){
-          success.style.display = "block";
-        }
-
-
-        try{
-          sessionStorage.setItem(
-            "autosrs_manager_closed",
-            "1"
-          );
-        }catch(e){}
-
-
-      }catch(error){
-
-        console.error(error);
-
-        alert(
-          "Не вдалося передати заявку. Будь ласка, спробуйте ще раз."
-        );
-
-
-        button.disabled = false;
-
-        button.textContent = oldButtonText;
+      if(formContent){
+        formContent.style.display = "none";
       }
 
-    });
-  }
+
+      if(success){
+        success.style.display = "block";
+      }
+
+
+    }catch(error){
+
+      console.error(error);
+
+
+      alert(
+        "Не вдалося передати заявку. Будь ласка, спробуйте ще раз."
+      );
+
+
+      button.disabled = false;
+
+      button.textContent = originalText;
+
+    }
+
+  });
 
 });
-
 
 
 /* =========================
@@ -353,6 +342,7 @@ document.addEventListener("keydown", (event) => {
     closeBranch();
 
     closeManager();
+
   }
 
 });
