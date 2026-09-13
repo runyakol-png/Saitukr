@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="uk">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -56,29 +57,42 @@
   </div>
 </div>
 
+
 <!-- Окно филиалов -->
+
 <div id="modalBackdrop"
      class="modal-backdrop"
      onclick="if(event.target===this)closeBranch()">
+
   <div id="modalBody" class="modal"></div>
+
 </div>
 
-<!-- Всплывающее окно менеджера -->
-<div id="managerBackdrop"
-     class="manager-backdrop"
-     onclick="if(event.target===this)closeManager()">
 
-  <div class="manager-popup">
+<!-- Виджет менеджера -->
 
-    <button class="manager-close" onclick="closeManager()">×</button>
+<div id="managerWidget" class="manager-widget">
+
+  <div id="managerPopup" class="manager-popup">
+
+    <button
+      class="manager-close"
+      type="button"
+      onclick="closeManager()"
+      aria-label="Закрити"
+    >
+      ×
+    </button>
 
     <div id="managerFormContent">
 
-      <h2>Зв’язатися з менеджером</h2>
+      <div class="manager-title">
+        Зв’язатися з менеджером
+      </div>
 
-      <p class="manager-text">
+      <div class="manager-description">
         Залиште свої контакти — ми передамо заявку менеджеру вашого регіону.
-      </p>
+      </div>
 
       <form id="managerForm">
 
@@ -87,6 +101,7 @@
           class="manager-input"
           type="text"
           placeholder="Ваше ім’я"
+          autocomplete="name"
           required
         >
 
@@ -95,6 +110,7 @@
           class="manager-input"
           type="tel"
           placeholder="+380"
+          autocomplete="tel"
           required
         >
 
@@ -103,7 +119,9 @@
           class="manager-input"
           required
         >
+
           <option value="">Оберіть область</option>
+
           <option>Вінницька область</option>
           <option>Волинська область</option>
           <option>Дніпропетровська область</option>
@@ -129,6 +147,7 @@
           <option>Чернівецька область</option>
           <option>Чернігівська область</option>
           <option>м. Київ</option>
+
         </select>
 
         <button
@@ -136,29 +155,53 @@
           class="manager-submit"
           type="submit"
         >
-          ЗВ’ЯЗАТИСЯ З МЕНЕДЖЕРОМ
+          ПЕРЕДАТИ МЕНЕДЖЕРУ
         </button>
 
       </form>
+
     </div>
 
-    <div id="managerSuccess" class="manager-success">
-      <h2>Заявку передано</h2>
 
-      <p>
+    <div id="managerSuccess" class="manager-success">
+
+      <div class="manager-success-icon">
+        ✓
+      </div>
+
+      <div class="manager-title">
+        Заявку передано
+      </div>
+
+      <div class="manager-description">
         Менеджер AutoSRS отримав ваш контакт і зв’яжеться з вами найближчим часом.
-      </p>
+      </div>
 
       <button
         class="manager-submit"
+        type="button"
         onclick="closeManager()"
       >
         ГОТОВО
       </button>
+
     </div>
 
   </div>
+
+
+  <button
+    id="managerButton"
+    class="manager-button"
+    type="button"
+    onclick="toggleManager()"
+  >
+    <span class="manager-button-dot"></span>
+    ЗВ’ЯЗАТИСЯ З МЕНЕДЖЕРОМ
+  </button>
+
 </div>
+
 
 <script src="app.js"></script>
 
