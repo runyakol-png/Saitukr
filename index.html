@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>AutoSRS — головна</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=3">
 </head>
 
 <body>
@@ -26,6 +26,15 @@
 
     <a class="hotspot" href="tel:+380635799065" aria-label="Телефон"
        style="left:67%;top:1%;width:14%;height:5%"></a>
+
+    <!-- Кнопка поверх існуючого напису "Зворотний дзвінок" -->
+    <button
+      class="hotspot"
+      type="button"
+      onclick="openManager()"
+      aria-label="Зворотний дзвінок"
+      style="left:82%;top:1%;width:14%;height:5%">
+    </button>
 
     <button class="hotspot" onclick="openBranch('lviv')"
             style="left:22%;top:33.5%;width:10%;height:8%"></button>
@@ -58,8 +67,7 @@
 </div>
 
 
-<!-- Окно филиалов -->
-
+<!-- Вікно філіалів -->
 <div id="modalBackdrop"
      class="modal-backdrop"
      onclick="if(event.target===this)closeBranch()">
@@ -69,8 +77,7 @@
 </div>
 
 
-<!-- Виджет менеджера -->
-
+<!-- Вікно менеджера -->
 <div id="managerWidget" class="manager-widget">
 
   <div id="managerPopup" class="manager-popup">
@@ -79,10 +86,10 @@
       class="manager-close"
       type="button"
       onclick="closeManager()"
-      aria-label="Закрити"
-    >
+      aria-label="Закрити">
       ×
     </button>
+
 
     <div id="managerFormContent">
 
@@ -93,6 +100,7 @@
       <div class="manager-description">
         Залиште свої контакти — ми передамо заявку менеджеру вашого регіону.
       </div>
+
 
       <form id="managerForm">
 
@@ -114,11 +122,11 @@
           required
         >
 
+
         <select
           id="managerRegion"
           class="manager-input"
-          required
-        >
+          required>
 
           <option value="">Оберіть область</option>
 
@@ -150,11 +158,11 @@
 
         </select>
 
+
         <button
           id="managerSubmit"
           class="manager-submit"
-          type="submit"
-        >
+          type="submit">
           ПЕРЕДАТИ МЕНЕДЖЕРУ
         </button>
 
@@ -180,8 +188,7 @@
       <button
         class="manager-submit"
         type="button"
-        onclick="closeManager()"
-      >
+        onclick="closeManager()">
         ГОТОВО
       </button>
 
@@ -189,21 +196,10 @@
 
   </div>
 
-
-  <button
-    id="managerButton"
-    class="manager-button"
-    type="button"
-    onclick="toggleManager()"
-  >
-    <span class="manager-button-dot"></span>
-    ЗВ’ЯЗАТИСЯ З МЕНЕДЖЕРОМ
-  </button>
-
 </div>
 
 
-<script src="app.js"></script>
+<script src="app.js?v=3"></script>
 
 </body>
 </html>
