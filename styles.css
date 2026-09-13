@@ -49,9 +49,7 @@ body{
 }
 
 
-/* =========================
-   ОКНО ФИЛИАЛОВ
-========================= */
+/* ФІЛІАЛИ */
 
 .modal-backdrop{
   display:none;
@@ -127,9 +125,7 @@ body{
 }
 
 
-/* =========================
-   ВИДЖЕТ МЕНЕДЖЕРА
-========================= */
+/* МЕНЕДЖЕР — СПРАВА ВНИЗУ */
 
 .manager-widget{
   position:fixed;
@@ -138,21 +134,24 @@ body{
   z-index:200;
   width:min(390px,calc(100vw - 30px));
   font-family:Arial,Helvetica,sans-serif;
+  pointer-events:none;
 }
 
 .manager-popup{
   display:none;
   position:relative;
   width:100%;
-  margin-bottom:12px;
   padding:26px 22px 22px;
   background:#0a0c0e;
   border:1px solid #34383d;
   border-radius:18px;
   line-height:1.4;
+
   box-shadow:
     0 18px 60px rgba(0,0,0,.75),
     0 0 30px rgba(255,23,39,.18);
+
+  pointer-events:auto;
 }
 
 .manager-popup.open{
@@ -259,39 +258,6 @@ select.manager-input{
   cursor:not-allowed;
 }
 
-.manager-button{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:9px;
-  width:100%;
-  min-height:55px;
-  padding:12px 18px;
-  border:1px solid #ff1727;
-  border-radius:14px;
-  background:#e90d1e;
-  color:#fff;
-  box-shadow:
-    0 12px 35px rgba(0,0,0,.55),
-    0 0 24px rgba(255,23,39,.25);
-  font-size:14px;
-  font-weight:900;
-  cursor:pointer;
-}
-
-.manager-button:hover{
-  background:#ff1727;
-}
-
-.manager-button-dot{
-  width:9px;
-  height:9px;
-  flex:0 0 9px;
-  border-radius:50%;
-  background:#fff;
-  box-shadow:0 0 10px rgba(255,255,255,.8);
-}
-
 .manager-success{
   display:none;
   text-align:center;
@@ -316,9 +282,7 @@ select.manager-input{
 }
 
 
-/* =========================
-   МОБИЛЬНАЯ ВЕРСИЯ
-========================= */
+/* МОБІЛЬНА ВЕРСІЯ */
 
 @media(max-width:700px){
 
@@ -356,11 +320,6 @@ select.manager-input{
   .manager-input{
     height:47px;
     font-size:16px;
-  }
-
-  .manager-button{
-    min-height:52px;
-    font-size:13px;
   }
 
 }
