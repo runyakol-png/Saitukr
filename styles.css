@@ -1,34 +1,36 @@
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
 html,body{
   margin:0;
   padding:0;
   background:#000;
   color:#fff;
-  font-family:Arial,Helvetica,sans-serif
+  font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-  min-height:100vh
+  min-height:100vh;
 }
 
 .page{
   width:100%;
   display:flex;
   justify-content:center;
-  background:#000
+  background:#000;
 }
 
 .canvas{
   position:relative;
   width:min(100vw,var(--base));
-  line-height:0
+  line-height:0;
 }
 
 .canvas>img{
   display:block;
   width:100%;
-  height:auto
+  height:auto;
 }
 
 .hotspot{
@@ -37,16 +39,19 @@ body{
   z-index:5;
   background:transparent;
   border:0;
-  cursor:pointer
+  cursor:pointer;
 }
 
 .hotspot:focus-visible{
   outline:2px solid #ff1727;
   outline-offset:2px;
-  border-radius:8px
+  border-radius:8px;
 }
 
-/* ===== Существующее окно филиалов ===== */
+
+/* =========================
+   ОКНО ФИЛИАЛОВ
+========================= */
 
 .modal-backdrop{
   display:none;
@@ -56,11 +61,11 @@ body{
   background:rgba(0,0,0,.82);
   align-items:center;
   justify-content:center;
-  padding:20px
+  padding:20px;
 }
 
 .modal-backdrop.open{
-  display:flex
+  display:flex;
 }
 
 .modal{
@@ -71,26 +76,26 @@ body{
   border-radius:18px;
   padding:24px;
   line-height:1.4;
-  box-shadow:0 0 38px rgba(255,0,25,.20)
+  box-shadow:0 0 38px rgba(255,0,25,.20);
 }
 
 .modal h2{
   font-size:28px;
   margin:0 0 10px;
-  font-style:italic
+  font-style:italic;
 }
 
 .modal p{
   font-size:17px;
   color:#ddd;
-  margin:8px 0
+  margin:8px 0;
 }
 
 .actions{
   display:flex;
   gap:10px;
   flex-wrap:wrap;
-  margin-top:18px
+  margin-top:18px;
 }
 
 .actions a{
@@ -101,12 +106,12 @@ body{
   color:#fff;
   text-decoration:none;
   font-size:15px;
-  font-weight:700
+  font-weight:700;
 }
 
 .actions a.primary{
   background:#ff1727;
-  border-color:#ff1727
+  border-color:#ff1727;
 }
 
 .close{
@@ -118,158 +123,244 @@ body{
   color:#fff;
   border-radius:7px;
   font-size:20px;
-  padding:2px 9px
+  padding:2px 9px;
 }
 
 
-/* ===== AutoSRS Manager Popup ===== */
+/* =========================
+   ВИДЖЕТ МЕНЕДЖЕРА
+========================= */
 
-.manager-backdrop{
-  display:none;
+.manager-widget{
   position:fixed;
-  inset:0;
-  z-index:100;
-  background:rgba(0,0,0,.78);
-  align-items:center;
-  justify-content:center;
-  padding:20px
-}
-
-.manager-backdrop.open{
-  display:flex
+  right:24px;
+  bottom:24px;
+  z-index:200;
+  width:min(390px,calc(100vw - 30px));
+  font-family:Arial,Helvetica,sans-serif;
 }
 
 .manager-popup{
+  display:none;
   position:relative;
-  width:min(440px,94vw);
-  background:#0b0d0f;
-  border:1px solid #33373c;
+  width:100%;
+  margin-bottom:12px;
+  padding:26px 22px 22px;
+  background:#0a0c0e;
+  border:1px solid #34383d;
   border-radius:18px;
-  padding:30px;
   line-height:1.4;
-  box-shadow:0 0 45px rgba(255,0,25,.25)
+  box-shadow:
+    0 18px 60px rgba(0,0,0,.75),
+    0 0 30px rgba(255,23,39,.18);
 }
 
-.manager-popup h2{
-  margin:0 35px 10px 0;
-  font-size:27px;
-  font-style:italic;
-  text-transform:uppercase
+.manager-popup.open{
+  display:block;
+  animation:managerOpen .22s ease-out;
 }
 
-.manager-text{
-  margin:0 0 22px;
-  color:#c9c9c9;
-  font-size:15px;
-  line-height:1.5
+@keyframes managerOpen{
+
+  from{
+    opacity:0;
+    transform:translateY(14px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+
 }
 
 .manager-close{
   position:absolute;
-  right:13px;
-  top:12px;
-  width:34px;
-  height:34px;
+  right:12px;
+  top:11px;
+  width:32px;
+  height:32px;
+  padding:0;
   border:1px solid #33373c;
   border-radius:8px;
   background:#17191c;
   color:#fff;
   font-size:23px;
   line-height:28px;
-  cursor:pointer
+  cursor:pointer;
+}
+
+.manager-title{
+  padding-right:32px;
+  margin-bottom:8px;
+  color:#fff;
+  font-size:23px;
+  line-height:1.15;
+  font-weight:900;
+  font-style:italic;
+  text-transform:uppercase;
+}
+
+.manager-description{
+  margin-bottom:18px;
+  color:#bfc1c4;
+  font-size:14px;
+  line-height:1.5;
 }
 
 .manager-input{
   display:block;
   width:100%;
-  height:50px;
-  margin:0 0 12px;
-  padding:0 15px;
+  height:48px;
+  margin-bottom:10px;
+  padding:0 14px;
   border:1px solid #34383d;
-  border-radius:8px;
+  border-radius:9px;
   background:#141619;
   color:#fff;
-  font-size:16px;
-  outline:none
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:15px;
+  outline:none;
 }
 
 .manager-input:focus{
-  border-color:#ff1727
+  border-color:#ff1727;
+  box-shadow:0 0 0 1px rgba(255,23,39,.25);
 }
 
 .manager-input::placeholder{
-  color:#777
+  color:#777b80;
 }
 
 select.manager-input{
-  cursor:pointer
+  cursor:pointer;
 }
 
 .manager-submit{
   width:100%;
-  min-height:52px;
-  margin-top:7px;
-  padding:12px 16px;
+  min-height:50px;
+  margin-top:4px;
+  padding:12px 14px;
   border:0;
-  border-radius:8px;
+  border-radius:9px;
   background:#ff1727;
   color:#fff;
-  font-size:15px;
-  font-weight:800;
-  cursor:pointer
+  font-size:14px;
+  font-weight:900;
+  cursor:pointer;
 }
 
 .manager-submit:hover{
-  filter:brightness(1.08)
+  filter:brightness(1.08);
 }
 
 .manager-submit:disabled{
   opacity:.6;
-  cursor:not-allowed
+  cursor:not-allowed;
+}
+
+.manager-button{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  width:100%;
+  min-height:55px;
+  padding:12px 18px;
+  border:1px solid #ff1727;
+  border-radius:14px;
+  background:#e90d1e;
+  color:#fff;
+  box-shadow:
+    0 12px 35px rgba(0,0,0,.55),
+    0 0 24px rgba(255,23,39,.25);
+  font-size:14px;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.manager-button:hover{
+  background:#ff1727;
+}
+
+.manager-button-dot{
+  width:9px;
+  height:9px;
+  flex:0 0 9px;
+  border-radius:50%;
+  background:#fff;
+  box-shadow:0 0 10px rgba(255,255,255,.8);
 }
 
 .manager-success{
   display:none;
-  text-align:center
+  text-align:center;
 }
 
-.manager-success h2{
-  margin-right:0
+.manager-success-icon{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:52px;
+  height:52px;
+  margin:0 auto 14px;
+  border-radius:50%;
+  background:#ff1727;
+  color:#fff;
+  font-size:28px;
+  font-weight:900;
 }
 
-.manager-success p{
-  color:#ddd;
-  font-size:16px;
-  line-height:1.5
+.manager-success .manager-title{
+  padding-right:0;
 }
 
 
-/* ===== Мобильная версия ===== */
+/* =========================
+   МОБИЛЬНАЯ ВЕРСИЯ
+========================= */
 
 @media(max-width:700px){
 
   .modal{
-    padding:18px
+    padding:18px;
   }
 
   .modal h2{
-    font-size:24px
+    font-size:24px;
   }
 
   .modal p{
-    font-size:15px
+    font-size:15px;
+  }
+
+  .manager-widget{
+    right:12px;
+    bottom:12px;
+    width:calc(100vw - 24px);
   }
 
   .manager-popup{
-    padding:23px 18px
+    padding:23px 17px 18px;
+    border-radius:15px;
   }
 
-  .manager-popup h2{
-    font-size:23px
+  .manager-title{
+    font-size:21px;
+  }
+
+  .manager-description{
+    font-size:14px;
   }
 
   .manager-input{
-    height:48px;
-    font-size:16px
+    height:47px;
+    font-size:16px;
   }
+
+  .manager-button{
+    min-height:52px;
+    font-size:13px;
+  }
+
 }
