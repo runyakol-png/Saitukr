@@ -73,9 +73,7 @@ const branches = {
 };
 
 
-/* =========================
-   ФИЛИАЛЫ
-========================= */
+/* ФІЛІАЛИ */
 
 function openBranch(key){
 
@@ -100,11 +98,9 @@ function openBranch(key){
 
   }
 
-
   const body = document.getElementById("modalBody");
 
   if(!body) return;
-
 
   body.innerHTML = `
 
@@ -130,10 +126,11 @@ function openBranch(key){
 
   `;
 
+  const backdrop = document.getElementById("modalBackdrop");
 
-  document
-    .getElementById("modalBackdrop")
-    .classList.add("open");
+  if(backdrop){
+    backdrop.classList.add("open");
+  }
 
 }
 
@@ -149,9 +146,7 @@ function closeBranch(){
 }
 
 
-/* =========================
-   МЕНЕДЖЕР
-========================= */
+/* МЕНЕДЖЕР */
 
 function openManager(){
 
@@ -175,33 +170,20 @@ function closeManager(){
 }
 
 
-function toggleManager(){
-
-  const popup = document.getElementById("managerPopup");
-
-  if(!popup) return;
-
-  popup.classList.toggle("open");
-
-}
-
-
-/* =========================
-   СТАРТ СТРАНИЦЫ
-========================= */
+/* ЗАПУСК */
 
 document.addEventListener("DOMContentLoaded", () => {
 
   /*
-    Через 5 секунд автоматически
-    показываем окно менеджера.
+    Автоматично відкриваємо
+    через 10 секунд
   */
 
   setTimeout(() => {
 
     openManager();
 
-  }, 5000);
+  }, 10000);
 
 
   const form = document.getElementById("managerForm");
@@ -277,8 +259,7 @@ document.addEventListener("DOMContentLoaded", () => {
       );
 
 
-      const result =
-        await response.json();
+      const result = await response.json();
 
 
       if(!response.ok || !result.success){
@@ -287,10 +268,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       }
 
-
-      /*
-        Показываем успешную отправку
-      */
 
       const formContent =
         document.getElementById("managerFormContent");
@@ -314,11 +291,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       console.error(error);
 
-
       alert(
         "Не вдалося передати заявку. Будь ласка, спробуйте ще раз."
       );
-
 
       button.disabled = false;
 
@@ -331,9 +306,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-/* =========================
-   ESC
-========================= */
+/* ESC */
 
 document.addEventListener("keydown", (event) => {
 
